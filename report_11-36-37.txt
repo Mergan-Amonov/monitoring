@@ -1,0 +1,11 @@
+Sana va vaqt: 2026-04-01 11:36:31
+Davomiylik: 20 soniya
+Klaviatura bosishlar soni: 0
+Sichqoncha bosishlar soni: 11
+Sichqoncha harakatlari soni: 2823
+Faol oynalar: ‎keysotar @ ‎MERGANJAN (9), report_11-36-10.txt - Notepad, .gitignore - Notepad, *Readme.txt - Notepad
+
+🤖 AI Xulosasi: Foydalanuvchi bir nechta matnli fayllarni (Notepad) ko'rib chiqmoqda va "keysotar @ MERGANJAN" ilovasi bilan faol muloqot qilmoqda, bunda asosan sichqoncha orqali navigatsiya va o'qish bilan band.
+----------------------------------------
+⌨️ YOZILGAN MATN (KEYLOG):
+[Hech narsa yozilmadi]

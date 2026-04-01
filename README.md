@@ -1,28 +1,60 @@
-# 🖥️ AI Asosidagi Kompyuter Faoliyatini Kuzatish Tizimi
 
-Bu loyiha foydalanuvchi roziligi asosida kompyuterdagi ish faoliyatini kuzatuvchi, statistik ma'lumotlarni yig'uvchi va ularni **Google Gemini Sun'iy Intellekti** yordamida tahlil qilib, Telegram bot orqali avtomatik hisobot yuboruvchi Python dasturidir.
+# 📊 AI Asosida Kompyuter Faoliyatini Monitoring Qilish Tizimi
 
-Tizim maxfiylikni to'liq saqlagan holda ishlaydi va kiritilgan matnlarni emas, faqat miqdoriy ko'rsatkichlarni tahlil qiladi.
+Bu dastur kompyuterdagi foydalanuvchi faoliyatini (klaviatura yozishmalari, sichqoncha bosishlari va faol oynalarni) avtomatik ravishda kuzatib boruvchi va **Google Gemini AI** yordamida aqlli xulosa chiqaruvchi Python skriptidir. Barcha ma'lumotlar va AI tahlili belgilangan vaqt oralig'ida Telegram bot orqali yuborib turiladi.
 
-## ✨ Asosiy Xususiyatlar
+## 🚀 Xususiyatlari
 
-* **Haqiqiy Sun'iy Intellekt Tahlili:** Dastur qotib qolgan qoidalarga emas, balki Google Gemini (1.5 Flash) neyron tarmog'iga tayanadi. U raqamlar va ochiq dasturlarni tahlil qilib, insonga xos aqlli xulosalar chiqaradi.
-* **Mutlaq Maxfiylik:** Dastur kiritilgan parollar yoki yozishmalarni (harflarni) o'qimaydi va saqlamaydi. Faqatgina tugmalar va sichqoncha bosilishlarining *umumiy soni* hisoblanadi.
-* **Foydalanuvchi Roziligi:** Dastur faqat foydalanuvchi terminalda tasdiqlaganidan so'nggina ishga tushadi.
-* **Telegram Integratsiyasi:** Har bir interval yakunida faoliyat xulosasi va batafsil `.txt` fayl belgilangan Telegram chatiga yuboriladi.
-* **Moslashuvchan Vaqt:** Monitoring oralig'ini o'z ehtiyojingizga qarab soniyalarda belgilashingiz mumkin (hozirda test uchun 20 soniya qilib sozlangan).
+* **Klaviatura Kuzatuvi (Keylogger):** Bosilgan harflar va so'zlarni xavfsiz tarzda matnga yig'ib boradi (maxsus tugmalar, masalan, Shift, Ctrl kabilar e'tiborsiz qoldiriladi).
+* **Sichqoncha Kuzatuvi (Mouse Tracker):** Ekranning qaysi kordinatalarida `(X, Y)` sichqoncha bosilganligini qayd etadi.
+* **Faol Oynalar (Active Windows):** Foydalanuvchi qaysi dasturlar yoki veb-saytlarda ishlayotganini aniqlaydi.
+* **Sun'iy Z इंटेill (AI) Tahlili:** Yig'ilgan statistikani Google GenAI (`gemini-2.5-flash`) modeliga yuborib, foydalanuvchi aynan nima ish bilan bandligi haqida qisqa va aniq xulosa oladi.
+* **Telegram Integratsiyasi:** Har hisobot davrida (masalan, 20 soniya) umumiy statistika va AI xulosasini Telegram xabar tarzida, to'liq yozishmalar va kordinatalarni esa `.txt` fayl ko'rinishida yuboradi.
 
-## 🛠 Texnologiyalar va Kutubxonalar
+## 🛠 Talablar
 
-Loyiha **Python** tilida yozilgan. Quyidagi kutubxonalardan foydalaniladi:
-* `google-generativeai` — Google Gemini API bilan ishlab, aqlli xulosalar olish uchun.
-* `pynput` — Klaviatura va sichqoncha hodisalarini kuzatish uchun.
-* `pygetwindow` — Kompyuterdagi faol oynalarni (dasturlarni) aniqlash uchun.
-* `requests` — Telegram Bot API bilan ishlash uchun.
+Dasturni ishga tushirish uchun kompyuteringizda **Python 3.x** o'rnatilgan bo'lishi kerak. Shuningdek, quyidagi kutubxonalarni o'rnatishingiz zarur:
 
-## 🚀 O'rnatish va Sozlash
-
-### 1-qadam: Kutubxonalarni o'rnatish
-Terminal (yoki buyruqlar satri) orqali kerakli modullarni o'rnating:
 ```bash
-pip install pynput pygetwindow requests google-generativeai
+pip install requests pygetwindow pynput google-genai
+```
+
+## ⚙️ O'rnatish va Sozlash
+
+1.  Ushbu kodni kompyuteringizga ko'chirib oling (masalan, `monitor.py` nomi bilan saqlang).
+2.  Kodni matn muharririda oching va quyidagi **Sozlamalar** qismini o'zingizning ma'lumotlaringiz bilan almashtiring:
+
+    ```python
+    # --- SOZLAMALAR ---
+    BOT_TOKEN = 'SIZNING_TELEGRAM_BOT_TOKENINGIZ'
+    CHAT_ID = 'SIZNING_TELEGRAM_CHAT_ID_RAQAMINGIZ'
+    GEMINI_API_KEY = 'SIZNING_GOOGLE_GEMINI_API_KALITINGIZ'
+    INTERVAL_SEC = 20  # Hisobot yuborish oralig'i (soniyalarda)
+    ```
+
+    * `BOT_TOKEN`: BotFather orqali yaratilgan Telegram bot tokeni.
+    * `CHAT_ID`: Hisobotlar borishi kerak bo'lgan akkaunt yoki guruhning ID raqami.
+    * `GEMINI_API_KEY`: Google AI Studio orqali olingan API kalit.
+
+## ▶️ Dasturni Ishga Tushirish
+
+Terminal yoki buyruqlar satrida (Command Prompt/PowerShell) quyidagi buyruqni kiriting:
+
+```bash
+python monitor.py
+```
+
+Dastur ishga tushganda sizdan rozilik so'raydi:
+`Dasturni ishga tushirishga rozimisiz? (H/Y):`
+`H` yoki `ha` deb yozib Enter bossangiz, monitoring boshlanadi. Dasturni to'xtatish uchun terminalda `Ctrl + C` tugmalarini bosing.
+
+## 📂 Hisobot Ko'rinishi
+
+Telegram botingizga quyidagi ko'rinishda xabar keladi:
+
+> 📊 Yangi hisobot (2023-10-27 15:30:00)
+> 🤖 AI: Foydalanuvchi Telegram dasturida kimgadir xabar yozmoqda.
+
+Va unga qo'shib `report_15-30-00.txt` nomli fayl yuboriladi. Fayl ichida batafsil statistika, bosilgan kordinatalar va yozilgan matn (keylog) bo'ladi.
+
+## ⚠️ Xavfsizlik va Maxfiylik Ogohlantir

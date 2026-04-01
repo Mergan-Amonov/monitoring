@@ -151,4 +151,27 @@ def start_monitoring():
 
             print(f"[{timestamp}] Hisobot tayyor: {ai_conclusion}")
 
-            tg_msg = f"📊 Yangi hisobot ({timestamp})\
+            tg_msg = f"📊 Yangi hisobot ({timestamp})\n🤖 AI: {ai_conclusion}"
+            send_to_telegram(tg_msg, filename)
+
+            # Keyingi sikl uchun o'zgaruvchilarni tozalash
+            key_clicks = 0
+            mouse_clicks = 0
+            active_windows.clear()
+            log_text = ""
+            click_coords.clear()
+
+    except KeyboardInterrupt:
+        print("\n[!] Dastur to'xtatildi (Ctrl+C).")
+        kb_listener.stop()
+        ms_listener.stop()
+
+# --- ISHGA TUSHIRISH ---
+if __name__ == "__main__":
+    print("=== KOMPYUTER FAOLIYATINI MONITORING QILISH TIZIMI ===")
+    consent = input("Dasturni ishga tushirishga rozimisiz? (H/Y): ").strip().lower()
+    
+    if consent in ['h', 'ha', 'y', 'yes']:
+        start_monitoring()
+    else:
+        print("Dastur yopildi.")
